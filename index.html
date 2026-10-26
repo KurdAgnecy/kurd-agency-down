@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurd Agency Down</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Tailwind Config for Dark Mode -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans Arabic"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: '#3b82f6', // Blue color for modern look
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700&display=swap');
+        
+        body { 
+            font-family: 'Noto Kufi Arabic', sans-serif; 
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        /* Glassmorphism Design */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .glass {
+            background: rgba(31, 41, 55, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Lock System Style */
+        .locked-area {
+            opacity: 0.5;
+            pointer-events: none;
+            filter: grayscale(100%);
+            transition: all 0.5s ease;
+        }
+        
+        .unlocked-area {
+            opacity: 1;
+            pointer-events: auto;
+            filter: grayscale(0%);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 min-h-screen flex flex-col relative overflow-x-hidden">
+    
+    <!-- Background Decor -->
+    <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-blob"></div>
+    <div class="absolute top-[-10%] right-[-10%] w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-blob animation-delay-2000"></div>
+
+    <!-- Navbar -->
+    <nav class="w-full p-4 glass sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-cloud-download-alt text-3xl text-blue-500"></i>
+                <h1 class="text-2xl font-bold text-gradient" data-lang="title">Kurd Agency Down</h1>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <!-- Language Selector -->
+                <select id="lang-switch" class="bg-transparent border border-gray-300 dark:border-gray-600 rounded-lg px-2 py-1 outline-none text-sm cursor-pointer">
+                    <option value="ku">کوردی (سۆرانی)</option>
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                </select>
+                
+                <!-- Dark Mode Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                    <i class="fas fa-moon text-xl dark:hidden"></i>
+                    <i class="fas fa-sun text-xl hidden dark:block text-yellow-400"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-4xl mx-auto w-full p-6 mt-10 z-10">
+        
+        <!-- Header Text -->
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4" data-lang="heroTitle">باشترین وێبسایت بۆ دابەزاندنی ڤیدیۆ</h2>
+            <p class="text-gray-600 dark:text-gray-400 text-lg" data-lang="heroSub">ڤیدیۆکانت لە یوتیوب، فەیسبووک، ئینستاگرام و تیکتۆک بە خێرایی و بەخۆڕایی دابەزێنە.</p>
+        </div>
+
+        <!-- Step 1: Social Media Lock -->
+        <div class="glass rounded-2xl p-8 mb-8 text-center border-t-4 border-blue-500 shadow-lg">
+            <div class="mb-4">
+                <i class="fas fa-lock text-4xl text-gray-400 mb-2" id="lock-icon"></i>
+                <h3 class="text-2xl font-bold mb-2" data-lang="step1Title">هەنگاوی یەکەم: فۆڵۆومان بکە</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-6" data-lang="step1Desc">بۆ ئەوەی بتوانیت ڤیدیۆ دابەزێنیت، پێویستە سەرەتا لەم دوو تۆڕە کۆمەڵایەتییە فۆڵۆومان بکەیت.</p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <!-- Instagram Button -->
+                <a href="https://www.instagram.com/kurd.agency.company?psln=b2VlMzVrbXNuNTQx" target="_blank" onclick="checkUnlock('insta')" class="flex items-center justify-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white py-3 px-6 rounded-xl font-semibold transition transform hover:scale-105 shadow-md w-full sm:w-auto">
+                    <i class="fab fa-instagram text-xl"></i>
+                    <span data-lang="instaBtn">ئینستاگرام</span>
+                </a>
+                
+                <!-- TikTok Button -->
+                <a href="https://www.tiktok.com/@kurd.agency?_r=1&_t=ZS-9AsMpPOoJHD" target="_blank" onclick="checkUnlock('tiktok')" class="flex items-center justify-center gap-2 bg-black hover:bg-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700 text-white py-3 px-6 rounded-xl font-semibold transition transform hover:scale-105 shadow-md w-full sm:w-auto border border-gray-700">
+                    <i class="fab fa-tiktok text-xl"></i>
+                    <span data-lang="tiktokBtn">تیکتۆک</span>
+                </a>
+            </div>
+            
+            <!-- Success Message -->
+            <div id="unlock-msg" class="hidden mt-6 text-green-500 font-bold text-lg animate-pulse">
+                <i class="fas fa-check-circle mr-1"></i> <span data-lang="unlockedText">قوفڵەکە کرایەوە! ئێستا دەتوانیت بەستەرەکە دابنێیت.</span>
+            </div>
+        </div>
+
+        <!-- Step 2: Downloader (Initially Locked) -->
+        <div id="downloader-section" class="glass rounded-2xl p-8 locked-area shadow-lg">
+            <h3 class="text-2xl font-bold mb-6 text-center" data-lang="step2Title">هەنگاوی دووەم: لینکی ڤیدیۆکە دابنێ</h3>
+            
+            <div class="flex gap-4 justify-center mb-6 text-3xl">
+                <i class="fab fa-youtube text-red-500"></i>
+                <i class="fab fa-facebook text-blue-600"></i>
+                <i class="fab fa-instagram text-pink-500"></i>
+                <i class="fab fa-tiktok text-black dark:text-white"></i>
+            </div>
+
+            <form onsubmit="handleDownload(event)" class="relative">
+                <input type="url" id="video-url" required class="w-full bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-xl px-4 py-4 pr-32 outline-none focus:border-blue-500 transition text-gray-800 dark:text-gray-100" placeholder="لێرە لینکی ڤیدیۆکە دابنێ...">
+                
+                <button type="submit" class="absolute top-2 left-2 (rtl) right-2 (ltr) bottom-2 bg-blue-600 hover:bg-blue-700 text-white px-6 rounded-lg font-bold transition flex items-center gap-2" id="download-btn-style">
+                    <i class="fas fa-download"></i>
+                    <span data-lang="downloadBtn">دابەزاندن</span>
+                </button>
+            </form>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass mt-auto py-6 text-center z-10">
+        <p class="text-gray-600 dark:text-gray-400 font-medium" data-lang="footerText">گشت مافێکی پارێزراوە بۆ Kurd Agency Company © 2026</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- Dark Mode Logic ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Check local storage for theme
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            if (html.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+
+        // --- Follow to Unlock Logic ---
+        let instaClicked = false;
+        let tiktokClicked = false;
+
+        function checkUnlock(platform) {
+            if (platform === 'insta') instaClicked = true;
+            if (platform === 'tiktok') tiktokClicked = true;
+
+            if (instaClicked && tiktokClicked) {
+                const section = document.getElementById('downloader-section');
+                const lockIcon = document.getElementById('lock-icon');
+                const msg = document.getElementById('unlock-msg');
+
+                section.classList.remove('locked-area');
+                section.classList.add('unlocked-area');
+                
+                lockIcon.classList.remove('fa-lock', 'text-gray-400');
+                lockIcon.classList.add('fa-unlock', 'text-green-500');
+                
+                msg.classList.remove('hidden');
+            }
+        }
+
+
+        // --- Fake Download Handler ---
+        function handleDownload(e) {
+            e.preventDefault();
+            const lang = document.getElementById('lang-switch').value;
+            let alertMsg = "";
+            
+            if(lang === 'ku') alertMsg = "تێبینی: بۆ ئەوەی ڤیدیۆکان بەڕاستی داببەزن، پێویستە API ی دابەزاندن لەگەڵ Backend ببەسترێتەوە. دیزاینەکە تەواوە!";
+            else if(lang === 'en') alertMsg = "Note: To actually download videos, you need to connect a downloader API to the backend. The UI is ready!";
+            else alertMsg = "ملاحظة: لتنزيل مقاطع الفيديو فعليًا، تحتاج إلى ربط API التنزيل. التصميم جاهز!";
+            
+            alert(alertMsg);
+        }
+
+
+        // --- Language Switcher Logic ---
+        const translations = {
+            ku: {
+                title: "Kurd Agency Down",
+                heroTitle: "باشترین وێبسایت بۆ دابەزاندنی ڤیدیۆ",
+                heroSub: "ڤیدیۆکانت لە یوتیوب، فەیسبووک، ئینستاگرام و تیکتۆک بە خێرایی و بەخۆڕایی دابەزێنە.",
+                step1Title: "هەنگاوی یەکەم: فۆڵۆومان بکە",
+                step1Desc: "بۆ ئەوەی بتوانیت ڤیدیۆ دابەزێنیت، پێویستە سەرەتا لەم دوو تۆڕە کۆمەڵایەتییە فۆڵۆومان بکەیت.",
+                instaBtn: "فۆڵۆوی ئینستاگرام",
+                tiktokBtn: "فۆڵۆوی تیکتۆک",
+                step2Title: "هەنگاوی دووەم: لینکی ڤیدیۆکە دابنێ",
+                downloadBtn: "دابەزاندن",
+                footerText: "گشت مافێکی پارێزراوە بۆ Kurd Agency Company © 2026",
+                unlockedText: "قوفڵەکە کرایەوە! ئێستا دەتوانیت بەستەرەکە دابنێیت.",
+                dir: 'rtl',
+                placeholder: "لێرە لینکی ڤیدیۆکە دابنێ..."
+            },
+            en: {
+                title: "Kurd Agency Down",
+                heroTitle: "Best Video Downloader Tool",
+                heroSub: "Download your videos from YouTube, Facebook, Instagram, and TikTok quickly and for free.",
+                step1Title: "Step 1: Follow Us",
+                step1Desc: "To unlock the downloader, please follow us on these two social networks first.",
+                instaBtn: "Follow Instagram",
+                tiktokBtn: "Follow TikTok",
+                step2Title: "Step 2: Paste Video Link",
+                downloadBtn: "Download",
+                footerText: "All Rights Reserved for Kurd Agency Company © 2026",
+                unlockedText: "Unlocked! You can now paste your link.",
+                dir: 'ltr',
+                placeholder: "Paste the video link here..."
+            },
+            ar: {
+                title: "Kurd Agency Down",
+                heroTitle: "أفضل موقع لتنزيل مقاطع الفيديو",
+                heroSub: "قم بتنزيل مقاطع الفيديو من يوتيوب، فيسبوك، إنستغرام وتيك توك بسرعة ومجاناً.",
+                step1Title: "الخطوة الأولى: تابعنا",
+                step1Desc: "لتتمكن من تنزيل مقاطع الفيديو، يجب عليك أولاً متابعتنا على هاتين الشبكتين.",
+                instaBtn: "تابعنا إنستغرام",
+                tiktokBtn: "تابعنا تيك توك",
+                step2Title: "الخطوة الثانية: ضع رابط الفيديو",
+                downloadBtn: "تنزيل",
+                footerText: "جميع الحقوق محفوظة لشركة Kurd Agency © 2026",
+                unlockedText: "تم الفتح! يمكنك الآن وضع الرابط.",
+                dir: 'rtl',
+                placeholder: "ضع رابط الفيديو هنا..."
+            }
+        };
+
+        const langSwitch = document.getElementById('lang-switch');
+        const urlInput = document.getElementById('video-url');
+        const submitBtn = document.getElementById('download-btn-style');
+
+        langSwitch.addEventListener('change', (e) => {
+            const lang = e.target.value;
+            const data = translations[lang];
+            
+            // Set direction
+            html.setAttribute('dir', data.dir);
+            html.setAttribute('lang', lang);
+
+            // Button Positioning based on LTR / RTL
+            if(data.dir === 'ltr') {
+                submitBtn.classList.remove('right-2');
+                submitBtn.classList.add('right-2');
+                urlInput.classList.remove('pr-32');
+                urlInput.classList.add('pl-4', 'pr-32');
+            } else {
+                submitBtn.classList.remove('right-2');
+                submitBtn.classList.add('left-2');
+                urlInput.classList.remove('pl-32');
+                urlInput.classList.add('pr-4', 'pl-32');
+            }
+
+            // Update texts
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                const key = el.getAttribute('data-lang');
+                if (data[key]) {
+                    el.innerText = data[key];
+                }
+            });
+            
+            // Update placeholder
+            urlInput.setAttribute('placeholder', data.placeholder);
+        });
+
+        // Initialize button position for default RTL
+        submitBtn.classList.add('left-2');
+        urlInput.classList.add('pl-32');
+
+    </script>
+</body>
+</html>
