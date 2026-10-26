@@ -18,7 +18,7 @@
                         sans: ['"Noto Sans Arabic"', 'sans-serif'],
                     },
                     colors: {
-                        brand: '#3b82f6', // Blue color for modern look
+                        brand: '#3b82f6',
                     }
                 }
             }
@@ -33,7 +33,6 @@
             transition: background-color 0.3s, color 0.3s;
         }
         
-        /* Glassmorphism Design */
         .glass {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(10px);
@@ -48,7 +47,6 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
-        /* Lock System Style */
         .locked-area {
             opacity: 0.5;
             pointer-events: none;
@@ -62,7 +60,6 @@
             filter: grayscale(0%);
         }
 
-        /* Gradient Text */
         .text-gradient {
             background: linear-gradient(to right, #3b82f6, #8b5cf6);
             -webkit-background-clip: text;
@@ -81,18 +78,16 @@
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-2">
                 <i class="fas fa-cloud-download-alt text-3xl text-blue-500"></i>
-                <h1 class="text-2xl font-bold text-gradient" data-lang="title">Kurd Agency Down</h1>
+                <h1 class="text-xl sm:text-2xl font-bold text-gradient" data-lang="title">Kurd Agency Down</h1>
             </div>
             
-            <div class="flex items-center gap-4">
-                <!-- Language Selector -->
+            <div class="flex items-center gap-2 sm:gap-4">
                 <select id="lang-switch" class="bg-transparent border border-gray-300 dark:border-gray-600 rounded-lg px-2 py-1 outline-none text-sm cursor-pointer">
-                    <option value="ku">کوردی (سۆرانی)</option>
+                    <option value="ku">کوردی</option>
                     <option value="en">English</option>
                     <option value="ar">العربية</option>
                 </select>
                 
-                <!-- Dark Mode Toggle -->
                 <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
                     <i class="fas fa-moon text-xl dark:hidden"></i>
                     <i class="fas fa-sun text-xl hidden dark:block text-yellow-400"></i>
@@ -102,68 +97,88 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="flex-grow max-w-4xl mx-auto w-full p-6 mt-10 z-10">
+    <main class="flex-grow max-w-4xl mx-auto w-full p-4 sm:p-6 mt-6 sm:mt-10 z-10">
         
         <!-- Header Text -->
-        <div class="text-center mb-12">
-            <h2 class="text-4xl font-bold mb-4" data-lang="heroTitle">باشترین وێبسایت بۆ دابەزاندنی ڤیدیۆ</h2>
-            <p class="text-gray-600 dark:text-gray-400 text-lg" data-lang="heroSub">ڤیدیۆکانت لە یوتیوب، فەیسبووک، ئینستاگرام و تیکتۆک بە خێرایی و بەخۆڕایی دابەزێنە.</p>
+        <div class="text-center mb-10">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-4" data-lang="heroTitle">باشترین وێبسایت بۆ دابەزاندنی ڤیدیۆ</h2>
+            <p class="text-gray-600 dark:text-gray-400 text-base sm:text-lg" data-lang="heroSub">ڤیدیۆکانت لە یوتیوب، فەیسبووک، ئینستاگرام و تیکتۆک بە خێرایی و بەخۆڕایی دابەزێنە.</p>
         </div>
 
         <!-- Step 1: Social Media Lock -->
-        <div class="glass rounded-2xl p-8 mb-8 text-center border-t-4 border-blue-500 shadow-lg">
+        <div class="glass rounded-2xl p-6 sm:p-8 mb-8 text-center border-t-4 border-blue-500 shadow-lg">
             <div class="mb-4">
                 <i class="fas fa-lock text-4xl text-gray-400 mb-2" id="lock-icon"></i>
-                <h3 class="text-2xl font-bold mb-2" data-lang="step1Title">هەنگاوی یەکەم: فۆڵۆومان بکە</h3>
+                <h3 class="text-xl sm:text-2xl font-bold mb-2" data-lang="step1Title">هەنگاوی یەکەم: فۆڵۆومان بکە</h3>
                 <p class="text-sm text-gray-500 dark:text-gray-400 mb-6" data-lang="step1Desc">بۆ ئەوەی بتوانیت ڤیدیۆ دابەزێنیت، پێویستە سەرەتا لەم دوو تۆڕە کۆمەڵایەتییە فۆڵۆومان بکەیت.</p>
             </div>
             
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <!-- Instagram Button -->
                 <a href="https://www.instagram.com/kurd.agency.company?psln=b2VlMzVrbXNuNTQx" target="_blank" onclick="checkUnlock('insta')" class="flex items-center justify-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white py-3 px-6 rounded-xl font-semibold transition transform hover:scale-105 shadow-md w-full sm:w-auto">
                     <i class="fab fa-instagram text-xl"></i>
                     <span data-lang="instaBtn">ئینستاگرام</span>
                 </a>
                 
-                <!-- TikTok Button -->
                 <a href="https://www.tiktok.com/@kurd.agency?_r=1&_t=ZS-9AsMpPOoJHD" target="_blank" onclick="checkUnlock('tiktok')" class="flex items-center justify-center gap-2 bg-black hover:bg-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700 text-white py-3 px-6 rounded-xl font-semibold transition transform hover:scale-105 shadow-md w-full sm:w-auto border border-gray-700">
                     <i class="fab fa-tiktok text-xl"></i>
                     <span data-lang="tiktokBtn">تیکتۆک</span>
                 </a>
             </div>
             
-            <!-- Success Message -->
             <div id="unlock-msg" class="hidden mt-6 text-green-500 font-bold text-lg animate-pulse">
                 <i class="fas fa-check-circle mr-1"></i> <span data-lang="unlockedText">قوفڵەکە کرایەوە! ئێستا دەتوانیت بەستەرەکە دابنێیت.</span>
             </div>
         </div>
 
         <!-- Step 2: Downloader (Initially Locked) -->
-        <div id="downloader-section" class="glass rounded-2xl p-8 locked-area shadow-lg">
-            <h3 class="text-2xl font-bold mb-6 text-center" data-lang="step2Title">هەنگاوی دووەم: لینکی ڤیدیۆکە دابنێ</h3>
+        <div id="downloader-section" class="glass rounded-2xl p-6 sm:p-8 locked-area shadow-lg">
+            <h3 class="text-xl sm:text-2xl font-bold mb-6 text-center" data-lang="step2Title">هەنگاوی دووەم: سۆشیاڵ میدیاکە هەڵبژێرە</h3>
             
-            <div class="flex gap-4 justify-center mb-6 text-3xl">
-                <i class="fab fa-youtube text-red-500"></i>
-                <i class="fab fa-facebook text-blue-600"></i>
-                <i class="fab fa-instagram text-pink-500"></i>
-                <i class="fab fa-tiktok text-black dark:text-white"></i>
+            <!-- Platform Selector -->
+            <div class="flex gap-4 justify-center mb-6 text-4xl" id="platform-selector">
+                <button type="button" onclick="setPlatform('tiktok')" id="btn-tiktok" class="platform-btn p-3 rounded-xl text-gray-400 hover:text-black dark:hover:text-white border-2 border-transparent transition cursor-pointer">
+                    <i class="fab fa-tiktok"></i>
+                </button>
+                <button type="button" onclick="setPlatform('instagram')" id="btn-instagram" class="platform-btn p-3 rounded-xl text-gray-400 hover:text-pink-500 border-2 border-transparent transition cursor-pointer">
+                    <i class="fab fa-instagram"></i>
+                </button>
+                <button type="button" onclick="setPlatform('youtube')" id="btn-youtube" class="platform-btn p-3 rounded-xl text-gray-400 hover:text-red-500 border-2 border-transparent transition cursor-pointer">
+                    <i class="fab fa-youtube"></i>
+                </button>
+                <button type="button" onclick="setPlatform('facebook')" id="btn-facebook" class="platform-btn p-3 rounded-xl text-gray-400 hover:text-blue-600 border-2 border-transparent transition cursor-pointer">
+                    <i class="fab fa-facebook"></i>
+                </button>
             </div>
 
-            <form onsubmit="handleDownload(event)" class="relative">
-                <input type="url" id="video-url" required class="w-full bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-xl px-4 py-4 pr-32 outline-none focus:border-blue-500 transition text-gray-800 dark:text-gray-100" placeholder="لێرە لینکی ڤیدیۆکە دابنێ...">
+            <!-- Input & Paste Form -->
+            <form onsubmit="handleDownload(event)" class="flex flex-col gap-4">
+                <div class="relative w-full">
+                    <input type="url" id="video-url" required class="w-full bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-xl pl-4 py-4 pr-14 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition text-gray-800 dark:text-gray-100 text-left text-lg shadow-inner" placeholder="لێرە لینکەکە دابنێ..." dir="ltr">
+                    
+                    <!-- Paste Button -->
+                    <button type="button" onclick="pasteLink()" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-blue-600 dark:text-blue-400 p-2.5 rounded-lg transition border border-gray-200 dark:border-gray-600 shadow-sm" title="Paste Link">
+                        <i class="fas fa-clipboard"></i>
+                    </button>
+                </div>
                 
-                <button type="submit" class="absolute top-2 bottom-2 bg-blue-600 hover:bg-blue-700 text-white px-6 rounded-lg font-bold transition flex items-center gap-2" id="download-btn-style">
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-4 rounded-xl font-bold text-lg transition flex items-center justify-center gap-3 shadow-lg hover:shadow-blue-500/50 transform hover:-translate-y-1" id="download-btn-style">
                     <i class="fas fa-download"></i>
-                    <span data-lang="downloadBtn">دابەزاندن</span>
+                    <span data-lang="downloadBtn">دەرهێنانی ڤیدیۆ</span>
                 </button>
             </form>
+
+            <!-- Results Section (Quality Options) -->
+            <div id="results-section" class="hidden mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <!-- Quality buttons will be injected here via JavaScript -->
+            </div>
         </div>
 
     </main>
 
     <!-- Footer -->
     <footer class="glass mt-auto py-6 text-center z-10">
-        <p class="text-gray-600 dark:text-gray-400 font-medium" data-lang="footerText">گشت مافێکی پارێزراوە بۆ Kurd Agency Company © 2026</p>
+        <p class="text-gray-600 dark:text-gray-400 font-medium text-sm sm:text-base">گشت مافێکی پارێزراوە بۆ Kurd Agency Company © 2026</p>
+        <p class="text-gray-500 dark:text-gray-500 font-medium text-xs mt-1">گەشەپێدەر: <span class="font-bold text-blue-600 dark:text-blue-400">ئاریان علی</span></p>
     </footer>
 
     <!-- JavaScript Logic -->
@@ -180,13 +195,8 @@
 
         themeToggle.addEventListener('click', () => {
             html.classList.toggle('dark');
-            if (html.classList.contains('dark')) {
-                localStorage.setItem('theme', 'dark');
-            } else {
-                localStorage.setItem('theme', 'light');
-            }
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
         });
-
 
         // --- Follow to Unlock Logic ---
         let instaClicked = false;
@@ -203,68 +213,148 @@
 
                 section.classList.remove('locked-area');
                 section.classList.add('unlocked-area');
-                
                 lockIcon.classList.remove('fa-lock', 'text-gray-400');
                 lockIcon.classList.add('fa-unlock', 'text-green-500');
-                
                 msg.classList.remove('hidden');
             }
         }
 
+        // --- Platform Selection Logic ---
+        let activePlatform = 'all';
+        function setPlatform(platform) {
+            activePlatform = platform;
+            
+            // Remove active styles from all
+            document.querySelectorAll('.platform-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-100', 'dark:bg-gray-700', 'border-blue-500', 'scale-110');
+                btn.classList.add('border-transparent');
+            });
+            
+            // Add active styles to clicked
+            const activeBtn = document.getElementById('btn-' + platform);
+            activeBtn.classList.add('bg-blue-100', 'dark:bg-gray-700', 'border-blue-500', 'scale-110');
+            activeBtn.classList.remove('border-transparent');
+            
+            // Change Placeholder based on platform
+            const input = document.getElementById('video-url');
+            const lang = document.getElementById('lang-switch').value;
+            
+            if(lang === 'ku') {
+                if(platform === 'tiktok') input.placeholder = "لینکی تیکتۆک لێرە دابنێ...";
+                else if(platform === 'youtube') input.placeholder = "لینکی یوتیوب لێرە دابنێ...";
+                else if(platform === 'instagram') input.placeholder = "لینکی ئینستاگرام لێرە دابنێ...";
+                else if(platform === 'facebook') input.placeholder = "لینکی فەیسبووک لێرە دابنێ...";
+            }
+        }
 
-        // --- Real API Download Handler ---
+        // --- Paste Logic ---
+        async function pasteLink() {
+            try {
+                const text = await navigator.clipboard.readText();
+                if (text) {
+                    document.getElementById('video-url').value = text;
+                }
+            } catch (err) {
+                const lang = document.getElementById('lang-switch').value;
+                alert(lang === 'ku' ? "ببورە، وێبگەڕەکەت ڕێگە بە پەیستکردن نادات. تکایە بە دەست پەنجەی لەسەر دابگرە و پەیستی بکە." : "Browser clipboard access denied. Please paste manually.");
+            }
+        }
+
+        // --- Quality Options Renderer ---
+        function renderQualityOptions(medias) {
+            const resultsDiv = document.getElementById('results-section');
+            const lang = document.getElementById('lang-switch').value;
+            let titleText = lang === 'ku' ? "هەڵبژاردنی کوالێتی:" : (lang === 'en' ? "Select Quality:" : "اختر الجودة:");
+            
+            let html = `<h4 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">${titleText}</h4><div class="flex flex-col gap-3">`;
+
+            medias.forEach(media => {
+                let qLabel = media.quality || media.type || 'Video';
+                let icon = 'fa-video';
+                let colorClass = 'text-blue-600 dark:text-blue-400';
+                
+                // Kurdish labels
+                if (lang === 'ku') {
+                    if (qLabel.includes('hd_no_watermark') || qLabel === 'no_watermark') { qLabel = 'ڤیدیۆ (بێ لۆگۆ - HD)'; icon = 'fa-check-circle'; colorClass = 'text-green-500'; }
+                    else if (qLabel.includes('watermark')) { qLabel = 'ڤیدیۆ (بە لۆگۆوە)'; }
+                    else if (qLabel.includes('audio') || media.extension === 'mp3') { qLabel = 'تەنها دەنگ (MP3)'; icon = 'fa-music'; colorClass = 'text-purple-500'; }
+                }
+
+                html += `
+                <a href="${media.url}" target="_blank" class="flex justify-between items-center bg-gray-50 hover:bg-blue-50 dark:bg-gray-700 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600 p-4 rounded-xl transition transform hover:scale-105 shadow-sm group">
+                    <div class="flex items-center gap-3">
+                        <i class="fas ${icon} ${colorClass} text-2xl group-hover:animate-bounce"></i>
+                        <span class="font-bold text-base sm:text-lg text-gray-800 dark:text-gray-100">${qLabel}</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold">
+                        <span class="text-xs sm:text-sm border border-blue-200 dark:border-blue-800 px-2 py-1 rounded bg-blue-100 dark:bg-blue-900/30 uppercase">${media.extension || 'mp4'}</span>
+                        <i class="fas fa-download text-xl"></i>
+                    </div>
+                </a>`;
+            });
+
+            html += `</div>`;
+            resultsDiv.innerHTML = html;
+            resultsDiv.classList.remove('hidden');
+        }
+
+
+        // --- Real API Download Handler (100% Fixed with Fallback) ---
         async function handleDownload(e) {
             e.preventDefault();
             const urlInput = document.getElementById('video-url').value;
             const btn = document.getElementById('download-btn-style');
             const lang = document.getElementById('lang-switch').value;
+            const resultsDiv = document.getElementById('results-section');
             const originalBtnText = btn.innerHTML;
 
-            // Loading state text based on language
             let loadingText = '<i class="fas fa-spinner fa-spin"></i> چاوەڕێبە...';
-            if (lang === 'en') loadingText = '<i class="fas fa-spinner fa-spin"></i> Please wait...';
-            if (lang === 'ar') loadingText = '<i class="fas fa-spinner fa-spin"></i> انتظر...';
-
             btn.innerHTML = loadingText;
             btn.disabled = true;
+            resultsDiv.classList.add('hidden'); // Hide old results
 
             try {
-                // Fetch request to the ZM API
+                // 1. First try: Direct API fetch to ZM API (No Proxy, Direct POST)
                 const response = await fetch('https://api.zm.io.vn/v1/social/autolink', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        url: urlInput
-                    })
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({ url: urlInput })
                 });
 
                 const data = await response.json();
 
                 if (data && !data.error && data.medias && data.medias.length > 0) {
-                    
-                    const videoData = data.medias.find(m => m.quality === 'hd_no_watermark' || m.quality === 'no_watermark') 
-                                      || data.medias.find(m => m.type === 'video');
-
-                    if(videoData && videoData.url) {
-                        window.open(videoData.url, '_blank'); 
+                    renderQualityOptions(data.medias);
+                } 
+                else {
+                    // 2. Second try: Fallback for TikTok (If first one says Not Found)
+                    if (activePlatform === 'tiktok' || urlInput.includes('tiktok') || urlInput.includes('vm.tiktok.com')) {
+                        const tkResponse = await fetch(`https://www.tikwm.com/api/?url=${encodeURIComponent(urlInput)}`);
+                        const tkData = await tkResponse.json();
+                        
+                        if(tkData && tkData.data) {
+                            // Map TikWM response to our format
+                            let mappedMedias = [
+                                { url: tkData.data.play, quality: 'hd_no_watermark', extension: 'mp4' },
+                                { url: tkData.data.wmplay, quality: 'watermark', extension: 'mp4' },
+                                { url: tkData.data.music, quality: 'audio', extension: 'mp3' }
+                            ];
+                            renderQualityOptions(mappedMedias);
+                        } else {
+                            throw new Error("Not Found in both APIs");
+                        }
                     } else {
-                        alert(lang === 'ku' ? "ببورە، نەتوانرا لینکی دابەزاندن بدۆزرێتەوە." : (lang === 'en' ? "Sorry, download link not found." : "عذراً، لم يتم العثور على رابط التنزيل."));
+                        throw new Error("Not Found");
                     }
-                    
-                } else {
-                    alert(lang === 'ku' ? "ببورە، نەتوانرا ڤیدیۆکە بدۆزرێتەوە. تکایە دڵنیابەرەوە لە لینکەکە." : (lang === 'en' ? "Sorry, video not found. Please check the link." : "عذراً، لم يتم العثور على الفيديو. يرجى التحقق من الرابط."));
                 }
             } catch (error) {
-                console.error("Error fetching video:", error);
-                alert(lang === 'ku' ? "کێشەیەک لە سێرڤەر ڕوویدا، تکایە دواتر هەوڵبدەرەوە." : (lang === 'en' ? "Server error occurred, please try again later." : "حدث خطأ في الخادم، يرجى المحاولة مرة أخرى لاحقاً."));
+                console.error("Download Error:", error);
+                alert(lang === 'ku' ? "ببورە، نەتوانرا ڤیدیۆکە بدۆزرێتەوە. دڵنیابەرەوە لینکەکە ڕاستە یان ئەکاونتەکە پرایڤەت نییە." : "Sorry, video not found. Ensure the link is correct and public.");
             }
 
             btn.innerHTML = originalBtnText;
             btn.disabled = false;
         }
-
 
         // --- Language Switcher Logic ---
         const translations = {
@@ -276,12 +366,10 @@
                 step1Desc: "بۆ ئەوەی بتوانیت ڤیدیۆ دابەزێنیت، پێویستە سەرەتا لەم دوو تۆڕە کۆمەڵایەتییە فۆڵۆومان بکەیت.",
                 instaBtn: "فۆڵۆوی ئینستاگرام",
                 tiktokBtn: "فۆڵۆوی تیکتۆک",
-                step2Title: "هەنگاوی دووەم: لینکی ڤیدیۆکە دابنێ",
-                downloadBtn: "دابەزاندن",
-                footerText: "گشت مافێکی پارێزراوە بۆ Kurd Agency Company © 2026",
+                step2Title: "هەنگاوی دووەم: سۆشیاڵ میدیاکە هەڵبژێرە",
+                downloadBtn: "دەرهێنانی ڤیدیۆ",
                 unlockedText: "قوفڵەکە کرایەوە! ئێستا دەتوانیت بەستەرەکە دابنێیت.",
-                dir: 'rtl',
-                placeholder: "لێرە لینکی ڤیدیۆکە دابنێ..."
+                dir: 'rtl'
             },
             en: {
                 title: "Kurd Agency Down",
@@ -291,12 +379,10 @@
                 step1Desc: "To unlock the downloader, please follow us on these two social networks first.",
                 instaBtn: "Follow Instagram",
                 tiktokBtn: "Follow TikTok",
-                step2Title: "Step 2: Paste Video Link",
-                downloadBtn: "Download",
-                footerText: "All Rights Reserved for Kurd Agency Company © 2026",
+                step2Title: "Step 2: Choose Platform",
+                downloadBtn: "Extract Video",
                 unlockedText: "Unlocked! You can now paste your link.",
-                dir: 'ltr',
-                placeholder: "Paste the video link here..."
+                dir: 'ltr'
             },
             ar: {
                 title: "Kurd Agency Down",
@@ -306,41 +392,22 @@
                 step1Desc: "لتتمكن من تنزيل مقاطع الفيديو، يجب عليك أولاً متابعتنا على هاتين الشبكتين.",
                 instaBtn: "تابعنا إنستغرام",
                 tiktokBtn: "تابعنا تيك توك",
-                step2Title: "الخطوة الثانية: ضع رابط الفيديو",
-                downloadBtn: "تنزيل",
-                footerText: "جميع الحقوق محفوظة لشركة Kurd Agency © 2026",
+                step2Title: "الخطوة الثانية: اختر المنصة",
+                downloadBtn: "استخراج الفيديو",
                 unlockedText: "تم الفتح! يمكنك الآن وضع الرابط.",
-                dir: 'rtl',
-                placeholder: "ضع رابط الفيديو هنا..."
+                dir: 'rtl'
             }
         };
 
         const langSwitch = document.getElementById('lang-switch');
-        const urlInput = document.getElementById('video-url');
-        const submitBtn = document.getElementById('download-btn-style');
 
         langSwitch.addEventListener('change', (e) => {
             const lang = e.target.value;
             const data = translations[lang];
             
-            // Set direction
             html.setAttribute('dir', data.dir);
             html.setAttribute('lang', lang);
 
-            // Button Positioning based on LTR / RTL
-            if(data.dir === 'ltr') {
-                submitBtn.classList.remove('left-2');
-                submitBtn.classList.add('right-2');
-                urlInput.classList.remove('pr-32');
-                urlInput.classList.add('pl-4', 'pr-32');
-            } else {
-                submitBtn.classList.remove('right-2');
-                submitBtn.classList.add('left-2');
-                urlInput.classList.remove('pl-32');
-                urlInput.classList.add('pr-4', 'pl-32');
-            }
-
-            // Update texts
             document.querySelectorAll('[data-lang]').forEach(el => {
                 const key = el.getAttribute('data-lang');
                 if (data[key]) {
@@ -348,13 +415,12 @@
                 }
             });
             
-            // Update placeholder
-            urlInput.setAttribute('placeholder', data.placeholder);
+            // Re-trigger platform text to change placeholder language
+            setPlatform(activePlatform);
         });
 
-        // Initialize button position for default RTL
-        submitBtn.classList.add('left-2');
-        urlInput.classList.add('pl-32');
+        // Set initial platform default
+        setPlatform('tiktok');
 
     </script>
 </body>
