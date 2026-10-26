@@ -152,7 +152,7 @@
             <form onsubmit="handleDownload(event)" class="relative">
                 <input type="url" id="video-url" required class="w-full bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-xl px-4 py-4 pr-32 outline-none focus:border-blue-500 transition text-gray-800 dark:text-gray-100" placeholder="لێرە لینکی ڤیدیۆکە دابنێ...">
                 
-                <button type="submit" class="absolute top-2 left-2 (rtl) right-2 (ltr) bottom-2 bg-blue-600 hover:bg-blue-700 text-white px-6 rounded-lg font-bold transition flex items-center gap-2" id="download-btn-style">
+                <button type="submit" class="absolute top-2 bottom-2 bg-blue-600 hover:bg-blue-700 text-white px-6 rounded-lg font-bold transition flex items-center gap-2" id="download-btn-style">
                     <i class="fas fa-download"></i>
                     <span data-lang="downloadBtn">دابەزاندن</span>
                 </button>
@@ -172,7 +172,6 @@
         const themeToggle = document.getElementById('theme-toggle');
         const html = document.documentElement;
 
-        // Check local storage for theme
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             html.classList.add('dark');
         } else {
@@ -213,17 +212,57 @@
         }
 
 
-        // --- Fake Download Handler ---
-        function handleDownload(e) {
+        // --- Real API Download Handler ---
+        async function handleDownload(e) {
             e.preventDefault();
+            const urlInput = document.getElementById('video-url').value;
+            const btn = document.getElementById('download-btn-style');
             const lang = document.getElementById('lang-switch').value;
-            let alertMsg = "";
-            
-            if(lang === 'ku') alertMsg = "تێبینی: بۆ ئەوەی ڤیدیۆکان بەڕاستی داببەزن، پێویستە API ی دابەزاندن لەگەڵ Backend ببەسترێتەوە. دیزاینەکە تەواوە!";
-            else if(lang === 'en') alertMsg = "Note: To actually download videos, you need to connect a downloader API to the backend. The UI is ready!";
-            else alertMsg = "ملاحظة: لتنزيل مقاطع الفيديو فعليًا، تحتاج إلى ربط API التنزيل. التصميم جاهز!";
-            
-            alert(alertMsg);
+            const originalBtnText = btn.innerHTML;
+
+            // Loading state text based on language
+            let loadingText = '<i class="fas fa-spinner fa-spin"></i> چاوەڕێبە...';
+            if (lang === 'en') loadingText = '<i class="fas fa-spinner fa-spin"></i> Please wait...';
+            if (lang === 'ar') loadingText = '<i class="fas fa-spinner fa-spin"></i> انتظر...';
+
+            btn.innerHTML = loadingText;
+            btn.disabled = true;
+
+            try {
+                // Fetch request to the ZM API
+                const response = await fetch('https://api.zm.io.vn/v1/social/autolink', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        url: urlInput
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data && !data.error && data.medias && data.medias.length > 0) {
+                    
+                    const videoData = data.medias.find(m => m.quality === 'hd_no_watermark' || m.quality === 'no_watermark') 
+                                      || data.medias.find(m => m.type === 'video');
+
+                    if(videoData && videoData.url) {
+                        window.open(videoData.url, '_blank'); 
+                    } else {
+                        alert(lang === 'ku' ? "ببورە، نەتوانرا لینکی دابەزاندن بدۆزرێتەوە." : (lang === 'en' ? "Sorry, download link not found." : "عذراً، لم يتم العثور على رابط التنزيل."));
+                    }
+                    
+                } else {
+                    alert(lang === 'ku' ? "ببورە، نەتوانرا ڤیدیۆکە بدۆزرێتەوە. تکایە دڵنیابەرەوە لە لینکەکە." : (lang === 'en' ? "Sorry, video not found. Please check the link." : "عذراً، لم يتم العثور على الفيديو. يرجى التحقق من الرابط."));
+                }
+            } catch (error) {
+                console.error("Error fetching video:", error);
+                alert(lang === 'ku' ? "کێشەیەک لە سێرڤەر ڕوویدا، تکایە دواتر هەوڵبدەرەوە." : (lang === 'en' ? "Server error occurred, please try again later." : "حدث خطأ في الخادم، يرجى المحاولة مرة أخرى لاحقاً."));
+            }
+
+            btn.innerHTML = originalBtnText;
+            btn.disabled = false;
         }
 
 
@@ -290,7 +329,7 @@
 
             // Button Positioning based on LTR / RTL
             if(data.dir === 'ltr') {
-                submitBtn.classList.remove('right-2');
+                submitBtn.classList.remove('left-2');
                 submitBtn.classList.add('right-2');
                 urlInput.classList.remove('pr-32');
                 urlInput.classList.add('pl-4', 'pr-32');
