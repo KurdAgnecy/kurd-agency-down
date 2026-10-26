@@ -4,97 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kurd Agency Down</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['"Noto Sans Arabic"', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: '#3b82f6',
-                        tiktok: '#000000',
-                        instagram: '#E1306C',
-                        youtube: '#FF0000',
-                        facebook: '#1877F2'
-                    }
+                    fontFamily: { sans: ['"Noto Sans Arabic"', 'sans-serif'] },
+                    colors: { brand: '#3b82f6', tiktok: '#000000', instagram: '#E1306C', youtube: '#FF0000', facebook: '#1877F2' }
                 }
             }
         }
     </script>
-    <!-- Google Fonts -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700&display=swap');
-        
-        body { 
-            font-family: 'Noto Kufi Arabic', sans-serif; 
-            transition: background-color 0.3s, color 0.3s;
-        }
-        
+        body { font-family: 'Noto Kufi Arabic', sans-serif; transition: background-color 0.3s, color 0.3s; }
         .glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
-        
         .dark .glass {
-            background: rgba(31, 41, 55, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            background: rgba(31, 41, 55, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
-
         .text-gradient {
-            background: linear-gradient(to right, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-
-        /* Platform button styles */
-        .platform-btn {
-            transition: all 0.3s ease;
-            filter: grayscale(100%);
-            opacity: 0.6;
-        }
-        .platform-btn.active {
-            filter: grayscale(0%);
-            opacity: 1;
-            transform: scale(1.15);
-        }
-        .platform-btn:hover {
-            filter: grayscale(0%);
-            opacity: 1;
-        }
+        .platform-btn { transition: all 0.3s ease; filter: grayscale(100%); opacity: 0.6; }
+        .platform-btn.active { filter: grayscale(0%); opacity: 1; transform: scale(1.15); }
+        .platform-btn:hover { filter: grayscale(0%); opacity: 1; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 min-h-screen flex flex-col relative overflow-x-hidden">
     
-    <!-- Background Decor -->
     <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-blob"></div>
     <div class="absolute top-[-10%] right-[-10%] w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-blob animation-delay-2000"></div>
 
-    <!-- Navbar -->
     <nav class="w-full p-4 glass sticky top-0 z-50">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-2">
                 <i class="fas fa-cloud-download-alt text-3xl text-blue-500"></i>
                 <h1 class="text-xl sm:text-2xl font-bold text-gradient" data-lang="title">Kurd Agency Down</h1>
             </div>
-            
             <div class="flex items-center gap-2 sm:gap-4">
                 <select id="lang-switch" class="bg-transparent border border-gray-300 dark:border-gray-600 rounded-lg px-2 py-1 outline-none text-sm cursor-pointer">
                     <option value="ku">کوردی</option>
                     <option value="en">English</option>
                     <option value="ar">العربية</option>
                 </select>
-                
                 <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
                     <i class="fas fa-moon text-xl dark:hidden"></i>
                     <i class="fas fa-sun text-xl hidden dark:block text-yellow-400"></i>
@@ -103,20 +60,16 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="flex-grow max-w-4xl mx-auto w-full p-4 sm:p-6 mt-6 sm:mt-10 z-10">
         
-        <!-- Header Text -->
         <div class="text-center mb-10">
             <h2 class="text-3xl sm:text-4xl font-bold mb-4" data-lang="heroTitle">باشترین وێبسایت بۆ دابەزاندنی ڤیدیۆ</h2>
             <p class="text-gray-600 dark:text-gray-400 text-base sm:text-lg" data-lang="heroSub">ڤیدیۆکانت لە یوتیوب، فەیسبووک، ئینستاگرام و تیکتۆک بە خێرایی و بەخۆڕایی دابەزێنە.</p>
         </div>
 
-        <!-- Downloader Section -->
         <div class="glass rounded-2xl p-6 sm:p-8 shadow-lg border-t-4 border-blue-500">
             <h3 class="text-lg sm:text-xl font-bold mb-6 text-center text-gray-700 dark:text-gray-300" data-lang="step2Title">کامە سۆشیاڵ میدیات دەوێت بۆ داگرتنی ڤیدیۆ هەڵیبژێرە</h3>
             
-            <!-- Platform Selector -->
             <div class="flex gap-6 justify-center mb-8 text-4xl" id="platform-selector">
                 <button type="button" onclick="setPlatform('tiktok')" id="btn-tiktok" class="platform-btn active text-tiktok dark:text-white cursor-pointer">
                     <i class="fab fa-tiktok"></i>
@@ -132,12 +85,10 @@
                 </button>
             </div>
 
-            <!-- Input & Paste Form -->
             <form onsubmit="handleDownload(event)" class="flex flex-col gap-4">
                 <div class="relative w-full">
                     <input type="url" id="video-url" required class="w-full bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-xl pl-4 py-4 pr-14 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition text-gray-800 dark:text-gray-100 text-left text-lg shadow-inner" placeholder="لێرە لینکەکە دابنێ..." dir="ltr">
                     
-                    <!-- Paste Button -->
                     <button type="button" onclick="pasteLink()" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-blue-600 dark:text-blue-400 p-2.5 rounded-lg transition border border-gray-200 dark:border-gray-600 shadow-sm" title="Paste Link">
                         <i class="fas fa-clipboard"></i>
                     </button>
@@ -149,13 +100,9 @@
                 </button>
             </form>
 
-            <!-- Results Section (Quality Options) -->
-            <div id="results-section" class="hidden mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-                <!-- Quality buttons will be injected here via JavaScript -->
-            </div>
+            <div id="results-section" class="hidden mt-8 pt-6 border-t border-gray-200 dark:border-gray-700"></div>
         </div>
 
-        <!-- Social Media Links (Replaced the lock) -->
         <div class="mt-8 text-center bg-gray-100 dark:bg-gray-800 rounded-2xl p-6 shadow-inner border border-gray-200 dark:border-gray-700">
             <h4 class="font-bold text-lg mb-4 text-gray-700 dark:text-gray-300" data-lang="socialTitle">لە سۆشیاڵ میدیاش لەگەڵمان بن</h4>
             <div class="flex justify-center gap-4">
@@ -167,18 +114,14 @@
                 </a>
             </div>
         </div>
-
     </main>
 
-    <!-- Footer -->
     <footer class="glass mt-auto py-6 text-center z-10">
         <p class="text-gray-600 dark:text-gray-400 font-medium text-sm sm:text-base">گشت مافێکی پارێزراوە بۆ Kurd Agency Company © 2026</p>
         <p class="text-gray-500 dark:text-gray-500 font-medium text-xs mt-1">گەشەپێدەر: <span class="font-bold text-blue-600 dark:text-blue-400">ئاریان علی</span></p>
     </footer>
 
-    <!-- JavaScript Logic -->
     <script>
-        // --- Dark Mode Logic ---
         const themeToggle = document.getElementById('theme-toggle');
         const html = document.documentElement;
 
@@ -193,24 +136,14 @@
             localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
         });
 
-        // --- Platform Selection Logic ---
         let activePlatform = 'tiktok';
         function setPlatform(platform) {
             activePlatform = platform;
+            document.querySelectorAll('.platform-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + platform).classList.add('active');
             
-            // Remove active styles from all
-            document.querySelectorAll('.platform-btn').forEach(btn => {
-                btn.classList.remove('active', 'border-blue-500');
-            });
-            
-            // Add active styles to clicked
-            const activeBtn = document.getElementById('btn-' + platform);
-            activeBtn.classList.add('active');
-            
-            // Change Placeholder based on platform
             const input = document.getElementById('video-url');
             const lang = document.getElementById('lang-switch').value;
-            
             if(lang === 'ku') {
                 if(platform === 'tiktok') input.placeholder = "لینکی تیکتۆک لێرە دابنێ...";
                 else if(platform === 'youtube') input.placeholder = "لینکی یوتیوب لێرە دابنێ...";
@@ -219,21 +152,28 @@
             }
         }
 
-        // --- Paste Logic ---
         async function pasteLink() {
             try {
                 const text = await navigator.clipboard.readText();
-                if (text) {
-                    document.getElementById('video-url').value = text;
-                }
+                if (text) document.getElementById('video-url').value = text;
             } catch (err) {
-                const lang = document.getElementById('lang-switch').value;
-                alert(lang === 'ku' ? "ببورە، وێبگەڕەکەت ڕێگە بە پەیستکردن نادات. تکایە بە دەست پەنجەی لەسەر دابگرە و پەیستی بکە." : "Browser clipboard access denied. Please paste manually.");
+                alert("بە دەست پەنجەی لەسەر دابگرە و پەیستی بکە.");
             }
         }
 
-        // --- Force Download Function ---
-        // ئەم فەنکشنە وادەکات ڤیدیۆکە داونلۆد ببێت نەک تەنها لە براوزەرەکە بکرێتەوە
+        // فەنکشنی هێنانی لینکە ڕاستەقینەکە لە لینکی کورتکراوە (Redirect Resolver)
+        async function resolveUrl(inputUrl) {
+            try {
+                const proxyCheck = 'https://api.allorigins.win/get?url=' + encodeURIComponent(inputUrl);
+                const res = await fetch(proxyCheck);
+                const data = await res.json();
+                if (data.status && data.status.url) {
+                    return data.status.url;
+                }
+            } catch(e) {}
+            return inputUrl;
+        }
+
         async function forceDownload(url, filename) {
             try {
                 const response = await fetch(url);
@@ -248,12 +188,10 @@
                 window.URL.revokeObjectURL(blobUrl);
                 document.body.removeChild(a);
             } catch (e) {
-                // ئەگەر فۆرس داونلۆد کاری نەکرد (وەک لە هەندێک ئایفۆن)، با بە ئاسایی بیکاتەوە
                 window.open(url, '_blank');
             }
         }
 
-        // --- Quality Options Renderer ---
         function renderQualityOptions(medias) {
             const resultsDiv = document.getElementById('results-section');
             const lang = document.getElementById('lang-switch').value;
@@ -262,19 +200,20 @@
             let html = `<h4 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">${titleText}</h4><div class="flex flex-col gap-3">`;
 
             medias.forEach((media, index) => {
+                if(!media.url) return;
+                
                 let qLabel = media.quality || media.type || 'Video';
                 let icon = 'fa-video';
                 let colorClass = 'text-blue-600 dark:text-blue-400';
                 
                 if (lang === 'ku') {
-                    if (qLabel.includes('hd_no_watermark') || qLabel === 'no_watermark') { qLabel = 'ڤیدیۆ (بێ لۆگۆ)'; icon = 'fa-check-circle'; colorClass = 'text-green-500'; }
+                    if (qLabel.includes('hd_no_watermark') || qLabel.includes('no_watermark')) { qLabel = 'ڤیدیۆ (بێ لۆگۆ)'; icon = 'fa-check-circle'; colorClass = 'text-green-500'; }
                     else if (qLabel.includes('watermark')) { qLabel = 'ڤیدیۆ (بە لۆگۆوە)'; }
                     else if (qLabel.includes('audio') || media.extension === 'mp3') { qLabel = 'تەنها دەنگ (MP3)'; icon = 'fa-music'; colorClass = 'text-purple-500'; }
                 }
 
-                // لە جیاتی ئەوەی ڕاستەوخۆ href دابنێین، فەنکشنی داونلۆد بانگ دەکەین
                 html += `
-                <button onclick="forceDownload('${media.url}', 'kurd-agency-${index}.${media.extension || 'mp4'}')" class="flex justify-between items-center w-full bg-gray-50 hover:bg-blue-50 dark:bg-gray-700 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600 p-4 rounded-xl transition transform hover:scale-105 shadow-sm group cursor-pointer text-right">
+                <button onclick="forceDownload('${media.url}', 'kurd-agency-${Date.now()}.${media.extension || 'mp4'}')" class="flex justify-between items-center w-full bg-gray-50 hover:bg-blue-50 dark:bg-gray-700 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600 p-4 rounded-xl transition transform hover:scale-105 shadow-sm group cursor-pointer text-right">
                     <div class="flex items-center gap-3">
                         <i class="fas ${icon} ${colorClass} text-2xl group-hover:animate-bounce"></i>
                         <span class="font-bold text-base sm:text-lg text-gray-800 dark:text-gray-100">${qLabel}</span>
@@ -291,37 +230,63 @@
             resultsDiv.classList.remove('hidden');
         }
 
-
-        // --- Real API Download Handler ---
         async function handleDownload(e) {
             e.preventDefault();
-            const urlInput = document.getElementById('video-url').value;
+            let rawUrl = document.getElementById('video-url').value.trim();
             const btn = document.getElementById('download-btn-style');
             const lang = document.getElementById('lang-switch').value;
             const resultsDiv = document.getElementById('results-section');
             const originalBtnText = btn.innerHTML;
 
-            let loadingText = '<i class="fas fa-spinner fa-spin"></i> چاوەڕێبە...';
-            btn.innerHTML = loadingText;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> چاوەڕێبە...';
             btn.disabled = true;
             resultsDiv.classList.add('hidden'); 
 
             try {
-                // بەکارهێنانی API یەکەی ZM ڕاستەوخۆ وەکوو ئەوەی بۆت ناردم
-                const response = await fetch('https://api.zm.io.vn/v1/social/autolink', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                    body: JSON.stringify({ url: urlInput })
-                });
+                // کردنەوەی لینکی کورتکراوە بۆ لینکی تەواو پێش ناردنی بۆ API
+                let urlInput = await resolveUrl(rawUrl);
+                let success = false;
 
-                const data = await response.json();
-
-                if (data && !data.error && data.medias && data.medias.length > 0) {
-                    renderQualityOptions(data.medias);
-                } 
-                else {
-                    throw new Error("Video API returned error or empty medias.");
+                // 1. ئەگەر تیکتۆک بوو
+                if (urlInput.includes('tiktok.com') || urlInput.includes('douyin.com')) {
+                    try {
+                        const tkRes = await fetch(`https://www.tikwm.com/api/?url=${encodeURIComponent(urlInput)}`);
+                        const tkData = await tkRes.json();
+                        if (tkData.code === 0 && tkData.data) {
+                            let medias = [];
+                            if (tkData.data.play) medias.push({ url: tkData.data.play, quality: 'hd_no_watermark', extension: 'mp4' });
+                            if (tkData.data.wmplay) medias.push({ url: tkData.data.wmplay, quality: 'watermark', extension: 'mp4' });
+                            if (tkData.data.music) medias.push({ url: tkData.data.music, type: 'audio', extension: 'mp3' });
+                            renderQualityOptions(medias);
+                            success = true;
+                        }
+                    } catch(err) {}
                 }
+
+                // 2. بۆ هەموو پلاتفۆرمەکانی تر (ئینستاگرام، فەیسبووک، یوتیوب، یان یەدەگی تیکتۆک)
+                if (!success) {
+                    const apiUrl = 'https://api.zm.io.vn/v1/social/autolink';
+                    let resData = null;
+
+                    try {
+                        const r1 = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url: urlInput }) });
+                        resData = await r1.json();
+                    } catch(e) {
+                        const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(apiUrl);
+                        const r2 = await fetch(proxyUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url: urlInput }) });
+                        resData = await r2.json();
+                    }
+
+                    if (resData && !resData.error && resData.medias && resData.medias.length > 0) {
+                        renderQualityOptions(resData.medias);
+                        success = true;
+                    }
+                }
+
+                if (!success) {
+                    throw new Error("Could not fetch video from any source.");
+                }
+
             } catch (error) {
                 console.error("Download Error:", error);
                 alert(lang === 'ku' ? "ببورە، نەتوانرا ڤیدیۆکە بدۆزرێتەوە. دڵنیابەرەوە لینکەکە ڕاستە یان ئەکاونتەکە پرایڤەت نییە." : "Sorry, video not found. Ensure the link is correct and public.");
@@ -331,53 +296,34 @@
             btn.disabled = false;
         }
 
-        // --- Language Switcher Logic ---
         const translations = {
             ku: {
-                title: "Kurd Agency Down",
-                heroTitle: "باشترین وێبسایت بۆ دابەزاندنی ڤیدیۆ",
+                title: "Kurd Agency Down", heroTitle: "باشترین وێبسایت بۆ دابەزاندنی ڤیدیۆ",
                 heroSub: "ڤیدیۆکانت لە یوتیوب، فەیسبووک، ئینستاگرام و تیکتۆک بە خێرایی و بەخۆڕایی دابەزێنە.",
                 step2Title: "کامە سۆشیاڵ میدیات دەوێت بۆ داگرتنی ڤیدیۆ هەڵیبژێرە",
-                downloadBtn: "دەرهێنانی ڤیدیۆ",
-                socialTitle: "لە سۆشیاڵ میدیاش لەگەڵمان بن",
-                dir: 'rtl'
+                downloadBtn: "دەرهێنانی ڤیدیۆ", socialTitle: "لە سۆشیاڵ میدیاش لەگەڵمان بن", dir: 'rtl'
             },
             en: {
-                title: "Kurd Agency Down",
-                heroTitle: "Best Video Downloader Tool",
+                title: "Kurd Agency Down", heroTitle: "Best Video Downloader Tool",
                 heroSub: "Download your videos from YouTube, Facebook, Instagram, and TikTok quickly and for free.",
                 step2Title: "Select the social media platform to download from",
-                downloadBtn: "Extract Video",
-                socialTitle: "Follow us on Social Media",
-                dir: 'ltr'
+                downloadBtn: "Extract Video", socialTitle: "Follow us on Social Media", dir: 'ltr'
             },
             ar: {
-                title: "Kurd Agency Down",
-                heroTitle: "أفضل موقع لتنزيل مقاطع الفيديو",
+                title: "Kurd Agency Down", heroTitle: "أفضل موقع لتنزيل مقاطع الفيديو",
                 heroSub: "قم بتنزيل مقاطع الفيديو من يوتيوب، فيسبوك، إنستغرام وتيك توك بسرعة ومجاناً.",
                 step2Title: "اختر منصة التواصل الاجتماعي لتنزيل الفيديو",
-                downloadBtn: "استخراج الفيديو",
-                socialTitle: "تابعنا على وسائل التواصل الاجتماعي",
-                dir: 'rtl'
+                downloadBtn: "استخراج الفيديو", socialTitle: "تابعنا على وسائل التواصل الاجتماعي", dir: 'rtl'
             }
         };
 
-        const langSwitch = document.getElementById('lang-switch');
-
-        langSwitch.addEventListener('change', (e) => {
+        document.getElementById('lang-switch').addEventListener('change', (e) => {
             const lang = e.target.value;
             const data = translations[lang];
-            
-            html.setAttribute('dir', data.dir);
-            html.setAttribute('lang', lang);
-
+            html.setAttribute('dir', data.dir); html.setAttribute('lang', lang);
             document.querySelectorAll('[data-lang]').forEach(el => {
-                const key = el.getAttribute('data-lang');
-                if (data[key]) {
-                    el.innerText = data[key];
-                }
+                if (data[el.getAttribute('data-lang')]) el.innerText = data[el.getAttribute('data-lang')];
             });
-            
             setPlatform(activePlatform);
         });
 
