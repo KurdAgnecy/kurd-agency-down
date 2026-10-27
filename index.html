@@ -161,78 +161,35 @@
             }
         }
 
-        // فەنکشنی هێنانی لینکە ڕاستەقینەکە لە لینکی کورتکراوە (Redirect Resolver)
-        async function resolveUrl(inputUrl) {
-            try {
-                const proxyCheck = 'https://api.allorigins.win/get?url=' + encodeURIComponent(inputUrl);
-                const res = await fetch(proxyCheck);
-                const data = await res.json();
-                if (data.status && data.status.url) {
-                    return data.status.url;
-                }
-            } catch(e) {}
-            return inputUrl;
-        }
-
-        async function forceDownload(url, filename) {
-            try {
-                const response = await fetch(url);
-                const blob = await response.blob();
-                const blobUrl = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = blobUrl;
-                a.download = filename || 'video.mp4';
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(blobUrl);
-                document.body.removeChild(a);
-            } catch (e) {
-                window.open(url, '_blank');
-            }
-        }
-
-        function renderQualityOptions(medias) {
+        function renderQualityOptions(url, type) {
             const resultsDiv = document.getElementById('results-section');
             const lang = document.getElementById('lang-switch').value;
-            let titleText = lang === 'ku' ? "هەڵبژاردنی کوالێتی:" : (lang === 'en' ? "Select Quality:" : "اختر الجودة:");
+            let titleText = lang === 'ku' ? "ڤیدیۆکەت ئامادەیە بۆ داگرتن:" : (lang === 'en' ? "Your video is ready:" : "فيديوك جاهز للتنزيل:");
             
-            let html = `<h4 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">${titleText}</h4><div class="flex flex-col gap-3">`;
+            let btnText = lang === 'ku' ? "داگرتنی ڤیدیۆ (بێ لۆگۆ)" : "Download Video";
+            if(type === 'audio') btnText = lang === 'ku' ? "داگرتنی دەنگ (MP3)" : "Download Audio";
 
-            medias.forEach((media, index) => {
-                if(!media.url) return;
-                
-                let qLabel = media.quality || media.type || 'Video';
-                let icon = 'fa-video';
-                let colorClass = 'text-blue-600 dark:text-blue-400';
-                
-                if (lang === 'ku') {
-                    if (qLabel.includes('hd_no_watermark') || qLabel.includes('no_watermark')) { qLabel = 'ڤیدیۆ (بێ لۆگۆ)'; icon = 'fa-check-circle'; colorClass = 'text-green-500'; }
-                    else if (qLabel.includes('watermark')) { qLabel = 'ڤیدیۆ (بە لۆگۆوە)'; }
-                    else if (qLabel.includes('audio') || media.extension === 'mp3') { qLabel = 'تەنها دەنگ (MP3)'; icon = 'fa-music'; colorClass = 'text-purple-500'; }
-                }
-
-                html += `
-                <button onclick="forceDownload('${media.url}', 'kurd-agency-${Date.now()}.${media.extension || 'mp4'}')" class="flex justify-between items-center w-full bg-gray-50 hover:bg-blue-50 dark:bg-gray-700 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600 p-4 rounded-xl transition transform hover:scale-105 shadow-sm group cursor-pointer text-right">
+            let html = `
+            <h4 class="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100">${titleText}</h4>
+            <div class="flex flex-col gap-3">
+                <a href="${url}" target="_blank" download class="flex justify-between items-center w-full bg-green-500 hover:bg-green-600 text-white p-4 rounded-xl transition transform hover:scale-105 shadow-md group cursor-pointer text-right">
                     <div class="flex items-center gap-3">
-                        <i class="fas ${icon} ${colorClass} text-2xl group-hover:animate-bounce"></i>
-                        <span class="font-bold text-base sm:text-lg text-gray-800 dark:text-gray-100">${qLabel}</span>
+                        <i class="fas fa-check-circle text-2xl"></i>
+                        <span class="font-bold text-base sm:text-lg">${btnText}</span>
                     </div>
-                    <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold">
-                        <span class="text-xs sm:text-sm border border-blue-200 dark:border-blue-800 px-2 py-1 rounded bg-blue-100 dark:bg-blue-900/30 uppercase">${media.extension || 'mp4'}</span>
+                    <div class="flex items-center gap-2 font-semibold">
                         <i class="fas fa-download text-xl"></i>
                     </div>
-                </button>`;
-            });
+                </a>
+            </div>`;
 
-            html += `</div>`;
             resultsDiv.innerHTML = html;
             resultsDiv.classList.remove('hidden');
         }
 
         async function handleDownload(e) {
             e.preventDefault();
-            let rawUrl = document.getElementById('video-url').value.trim();
+            let urlInput = document.getElementById('video-url').value.trim();
             const btn = document.getElementById('download-btn-style');
             const lang = document.getElementById('lang-switch').value;
             const resultsDiv = document.getElementById('results-section');
@@ -243,53 +200,36 @@
             resultsDiv.classList.add('hidden'); 
 
             try {
-                // کردنەوەی لینکی کورتکراوە بۆ لینکی تەواو پێش ناردنی بۆ API
-                let urlInput = await resolveUrl(rawUrl);
-                let success = false;
+                // بەکارهێنانی Cobalt API کە باشترین و خێرترین API یە بۆ هەموو سۆشیاڵ میدیاکان بێ کێشە
+                const response = await fetch('https://co.wuk.sh/api/json', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        url: urlInput,
+                        vQuality: 'max',
+                        filenamePattern: 'classic'
+                    })
+                });
 
-                // 1. ئەگەر تیکتۆک بوو
-                if (urlInput.includes('tiktok.com') || urlInput.includes('douyin.com')) {
-                    try {
-                        const tkRes = await fetch(`https://www.tikwm.com/api/?url=${encodeURIComponent(urlInput)}`);
-                        const tkData = await tkRes.json();
-                        if (tkData.code === 0 && tkData.data) {
-                            let medias = [];
-                            if (tkData.data.play) medias.push({ url: tkData.data.play, quality: 'hd_no_watermark', extension: 'mp4' });
-                            if (tkData.data.wmplay) medias.push({ url: tkData.data.wmplay, quality: 'watermark', extension: 'mp4' });
-                            if (tkData.data.music) medias.push({ url: tkData.data.music, type: 'audio', extension: 'mp3' });
-                            renderQualityOptions(medias);
-                            success = true;
-                        }
-                    } catch(err) {}
-                }
+                const data = await response.json();
 
-                // 2. بۆ هەموو پلاتفۆرمەکانی تر (ئینستاگرام، فەیسبووک، یوتیوب، یان یەدەگی تیکتۆک)
-                if (!success) {
-                    const apiUrl = 'https://api.zm.io.vn/v1/social/autolink';
-                    let resData = null;
-
-                    try {
-                        const r1 = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url: urlInput }) });
-                        resData = await r1.json();
-                    } catch(e) {
-                        const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(apiUrl);
-                        const r2 = await fetch(proxyUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url: urlInput }) });
-                        resData = await r2.json();
+                if (data && (data.status === 'stream' || data.status === 'redirect' || data.status === 'picker')) {
+                    let downloadUrl = data.url || (data.picker && data.picker[0] && data.picker[0].url);
+                    if (downloadUrl) {
+                        renderQualityOptions(downloadUrl, data.status);
+                    } else {
+                        throw new Error("No URL found");
                     }
-
-                    if (resData && !resData.error && resData.medias && resData.medias.length > 0) {
-                        renderQualityOptions(resData.medias);
-                        success = true;
-                    }
-                }
-
-                if (!success) {
-                    throw new Error("Could not fetch video from any source.");
+                } else {
+                    throw new Error("API error");
                 }
 
             } catch (error) {
                 console.error("Download Error:", error);
-                alert(lang === 'ku' ? "ببورە، نەتوانرا ڤیدیۆکە بدۆزرێتەوە. دڵنیابەرەوە لینکەکە ڕاستە یان ئەکاونتەکە پرایڤەت نییە." : "Sorry, video not found. Ensure the link is correct and public.");
+                alert(lang === 'ku' ? "ببورە، نەتوانرا ڤیدیۆکە بدۆزرێتەوە. دڵنیابەرەوە لینکەکە ڕاستە و ئەکاونتەکە پرایڤەت نییە." : "Sorry, video not found. Ensure the link is correct and public.");
             }
 
             btn.innerHTML = originalBtnText;
