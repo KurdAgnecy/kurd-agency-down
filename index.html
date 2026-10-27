@@ -198,35 +198,17 @@
             resultsDiv.classList.add('hidden'); 
 
             try {
-                // بەکارهێنانی پرۆکسی کراوە بۆ پەیوەندیکردن بە API ی دابەزاندن بەبێ کێشەی CORS
-                const apiUrl = `https://tikwm.com/api/?url=${encodeURIComponent(urlInput)}`;
-                const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(apiUrl);
-                
-                const response = await fetch(proxyUrl);
-                const wrapper = await response.json();
-                const resData = JSON.parse(wrapper.contents);
-
-                if (resData && resData.code === 0 && resData.data) {
-                    let videoUrl = resData.data.play || resData.data.wmplay;
-                    if (videoUrl) {
-                        renderResults(videoUrl);
-                        btn.innerHTML = originalBtnText;
-                        btn.disabled = false;
-                        return;
-                    }
-                }
-
-                // ئەگەر پلاتفۆرمەکە تیکتۆک نەبوو، یان فەیسبووک و ئینستاگرام بوو، سیستەمی یەدەگ بەکاردەهێنین
-                const generalApi = `https://co.wuk.sh/api/json`;
-                const fallbackRes = await fetch('https://corsproxy.io/?' + encodeURIComponent(generalApi), {
+                // بەکارهێنانی خزمەتگوزاری قەبارە گەورەی Cobalt API بە ڕێگەی پرۆکسی بێبەرامبەر بۆ تێپەڕاندنی CORS
+                const res = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://co.wuk.sh/api/json'), {
                     method: 'POST',
                     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
                     body: JSON.stringify({ url: urlInput, vQuality: 'max' })
                 });
-                const fallbackData = await fallbackRes.json();
 
-                if (fallbackData && (fallbackData.url || fallbackData.picker)) {
-                    let finalUrl = fallbackData.url || (fallbackData.picker[0] && fallbackData.picker[0].url);
+                const data = await res.json();
+
+                if (data && (data.url || data.picker)) {
+                    let finalUrl = data.url || (data.picker && data.picker[0] && data.picker[0].url);
                     if (finalUrl) {
                         renderResults(finalUrl);
                         btn.innerHTML = originalBtnText;
@@ -235,7 +217,7 @@
                     }
                 }
 
-                throw new Error("Not found");
+                throw new Error("Failed");
 
             } catch (error) {
                 console.error("Download Error:", error);
